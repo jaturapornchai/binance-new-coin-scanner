@@ -8,6 +8,14 @@ import (
 	"time"
 )
 
+// getBaseCoin extracts base asset from a USDT pair (defined here for scanner logic only)
+func getBaseCoin(symbol string) string {
+	if len(symbol) > 4 && strings.HasSuffix(symbol, "USDT") {
+		return symbol[:len(symbol)-4]
+	}
+	return symbol
+}
+
 // Scan for best coins based on new listings (≤30 days)
 func scanBestCoins() ([]CoinInfo, error) {
 	fmt.Println("🔍 กำลังค้นหาเหรียญใหม่ (≤30 วัน) ด้วยกระบวนการ 2 ขั้นตอน...")
